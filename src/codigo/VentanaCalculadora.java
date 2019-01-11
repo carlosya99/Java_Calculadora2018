@@ -13,6 +13,13 @@ import java.awt.Label;
  */
 public class VentanaCalculadora extends javax.swing.JFrame {
 
+    double operando1 = 0;  //primer operando
+    
+    String operacion = "";
+    
+    
+    
+    
     /**
      * Creates new form VentanaCalculadora
      */
@@ -29,6 +36,14 @@ public class VentanaCalculadora extends javax.swing.JFrame {
         }
     }
     
+    private void operacionPulsada(String _operacion){
+     operacion = _operacion;
+     //convierto lo que hay escrito en la pantalla (que es un numero pero que ahora mismo es un String)
+     //a su equivalente double, para poder operar con el
+     operando1 = Double.valueOf(pantalla.getText());
+     
+     pantalla.setText("");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -301,7 +316,7 @@ public class VentanaCalculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_boton9MousePressed
 
     private void botonMasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonMasMousePressed
-        numeroPulsado("");
+        operacionPulsada("+");
     }//GEN-LAST:event_botonMasMousePressed
 
     private void boton7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton7MousePressed
@@ -321,7 +336,7 @@ public class VentanaCalculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_boton5MousePressed
 
     private void botonMenosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonMenosMousePressed
-        numeroPulsado("");
+        numeroPulsado("-");
     }//GEN-LAST:event_botonMenosMousePressed
 
     private void boton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton3MousePressed
@@ -333,23 +348,30 @@ public class VentanaCalculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_boton1MousePressed
 
     private void boton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton2MousePressed
-        numeroPulsado("");
+        numeroPulsado("2");
     }//GEN-LAST:event_boton2MousePressed
 
     private void botonPorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonPorMousePressed
-        numeroPulsado("");
+        numeroPulsado("*");
     }//GEN-LAST:event_botonPorMousePressed
 
     private void botonIgualMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonIgualMousePressed
-        numeroPulsado("");
+       //leo el segundo operando que está en la pantalla, y lo convierto a double
+       double operando2 = Double.valueOf(pantalla.getText());
+       
+       if (operacion.equals("+")){
+           operando1 = operando1 + operando2;
+       }
+       //dibujo en la pantalla el resultado convertido a string
+       pantalla.setText(String.valueOf(operando1));
     }//GEN-LAST:event_botonIgualMousePressed
 
     private void boton0MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton0MousePressed
-        numeroPulsado("");
+        numeroPulsado("0");
     }//GEN-LAST:event_boton0MousePressed
 
     private void botonEntreMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEntreMousePressed
-        numeroPulsado("7");
+        numeroPulsado("/");
     }//GEN-LAST:event_botonEntreMousePressed
 
     /**
